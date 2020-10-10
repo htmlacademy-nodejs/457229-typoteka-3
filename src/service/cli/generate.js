@@ -49,7 +49,7 @@ const runGenerateAndSaveScenario = (args) => {
   }
 
   const content = JSON.stringify(generateAds(adsCount));
-  fs.writeFile(`mocks.json`, content, (err) => {
+  fs.writeFile(`${__dirname}/../../../mocks.json`, content, (err) => {
     if (err) {
       console.error(err);
       process.exit(ExitCode.ERROR);
