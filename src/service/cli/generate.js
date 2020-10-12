@@ -1,5 +1,7 @@
 'use strict';
 
+const chalk = require(`chalk`);
+const fs = require(`fs`).promises;
 const {
   getRandomInt,
   shuffle,
@@ -14,7 +16,6 @@ const {
   CATEGORIES,
   ExitCode,
 } = require(`../auxiliary/constants`);
-const fs = require(`fs`);
 
 const getRandomDate = () => {
   const getToday = () => new Date();
@@ -40,28 +41,28 @@ const generateAds = (count) => {
   }));
 };
 
-const runGenerateAndSaveScenario = (args) => {
+const runGenerateAndSaveScenario = async (args) => {
   const [count] = args;
   const adsCount = Number.parseInt(count, 10) || DEFAULT_COUNT;
   if (adsCount > MAX_ADS_COUNT) {
-    console.error(`Не больше ${MAX_ADS_COUNT} объявлений`);
+    console.error(chalk.red(`Не больше ${MAX_ADS_COUNT} объявлений`));
     process.exit(ExitCode.SUCCESS);
   }
 
   const content = JSON.stringify(generateAds(adsCount));
-  fs.writeFile(`${__dirname}/../../../mocks.json`, content, (err) => {
-    if (err) {
-      console.error(err);
-      process.exit(ExitCode.ERROR);
-    }
-    console.info(`Operation success. File created.`);
+  try {
+    await fs.writeFile(`${__dirname}/../../../mocks.json`, content);
+    console.info(chalk.green(`Operation success. File created.`));
     process.exit(ExitCode.SUCCESS);
-  });
+  } catch (err) {
+    console.error(chalk.red(err));
+    process.exit(ExitCode.ERROR);
+  }
 };
 
 module.exports = {
   name: `--generate`,
-  run(args) {
-    runGenerateAndSaveScenario(args);
+  async run(args) {
+    await runGenerateAndSaveScenario(args);
   }
 };
