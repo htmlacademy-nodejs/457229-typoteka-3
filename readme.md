@@ -1,7 +1,7 @@
 # Личный проект «Типотека» [![Build status][travis-image]][travis-url]
 
 * Студент: [Anatoliy Avramenko](https://up.htmlacademy.ru/nodejs/3/user/457229).
-* Наставник: [Максим Теплов](https://htmlacademy.ru/profile/id1031027).
+* Наставник: [Сергей Рожков](https://htmlacademy.ru/profile/id1069033).
 
 ---
 
