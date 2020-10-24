@@ -1,13 +1,12 @@
 'use strict';
 
 const {Router} = require(`express`);
-const sendReqUrl = require(`../middlewares/sendReqUrl`);
 
 const articlesRouter = new Router();
 
-articlesRouter.get(`/`, sendReqUrl);
-articlesRouter.get(`/category/:id`, sendReqUrl);
-articlesRouter.get(`/edit/:id`, sendReqUrl);
-articlesRouter.get(`/:id`, sendReqUrl);
+articlesRouter.get(`/`, (req, res) => res.render(`articles-by-category`));
+articlesRouter.get(`/category/:id`, (req, res) => res.render(`articles-by-category`));
+articlesRouter.get(`/edit/:id`, (req, res) => res.render(`new-post`));
+articlesRouter.get(`/:id`, (req, res) => res.render(`post`));
 
 module.exports = articlesRouter;
