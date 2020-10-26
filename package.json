@@ -4,9 +4,9 @@
   "description": "Типотека",
   "main": "./src/service/service.js",
   "scripts": {
-    "start": "node ./src/service/service.js",
-    "start.dev": "nodemon ./src/main.js",
-    "start-front-server": "nodemon .src/express/index.js",
+    "start": "node src/service/service.js",
+    "start.dev": "nodemon src/service/service.js",
+    "start-front-server": "nodemon --inspect=localhost:5000 src/express/index.js",
     "test": "npm run eslint",
     "eslint": "eslint --ext .js src/"
   },
@@ -27,6 +27,8 @@
   },
   "dependencies": {
     "chalk": "4.1.0",
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "http-status-codes": "^2.1.4",
+    "pug": "3.0.0"
   }
 }
